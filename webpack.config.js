@@ -3,6 +3,7 @@
 const path = require("path");
 // Plugins
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const HtmlInlineScriptPlugin = require('html-inline-script-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 // Define whether current environment is production or not
 const isProduction = process.env.NODE_ENV === "production";
@@ -35,9 +36,13 @@ const config = {
     new HtmlWebpackPlugin({
       template: "example.html",
     }),
+    new HtmlInlineScriptPlugin(),
     new MiniCssExtractPlugin(),
     // Add your plugins here
     // Learn more about plugins from https://webpack.js.org/configuration/plugins/
+  ],
+  externals:[
+    {inputValues: "inputValues"}
   ],
   module: {
     rules: [
